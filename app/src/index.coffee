@@ -1,16 +1,6 @@
 fs = require('fs')
 sizeOf = require('image-size')
 
-
-###
-Element can be a picture or a video.
-type : movie or picture
-link : It the absolute link to this element
-###
-class Element
-  constructor : (@type, @link, @width, @height) ->
-
-
 ###
 View display an Element at the specified x and y position.
 ###
@@ -21,23 +11,26 @@ class View
     html = ''
 
     if @element.type == 'image'
-
-      html += '<img src="'
-      html += @element.link
-      html += '" style="position:absolute; top:'
-      html += @x * @element.height
-      html += 'px; left:'
-      html += @y * @element.width
-      html += 'px;"'
-      html += '/>'
+      _getHtmlOfImage
 
     else if @element.type == 'video'
-
       html += '<video id="video" autoplay '
       html += 'src="'
       html += @element.link
       html += '">'
       html += '</video>'
+
+
+  _getHtmlOfImage : (@element, @x, @y) ->
+    html = '<img src="'
+    html += @element.link
+    html += '" style="position:absolute; top:'
+    html += @x * @element.height
+    html += 'px; left:'
+    html += @y * @element.width
+    html += 'px;"'
+    html += '/>'
+    return html
 
 class Weather
   constructor : (@location = 'Luxembourg') ->
@@ -73,7 +66,7 @@ class Library
     imageFiles = fs.readdirSync(@imageDirectory)
     for file in imageFiles
       link = './images/' + file
-      dimensions = sizeOf(link) 
+      dimensions = sizeOf(link)
       if(dimensions.height > 1080)
         image = new Element('image', link, dimensions.width, dimensions.height)
         @bigImages.push(image)
@@ -193,7 +186,7 @@ run = () ->
     `function refresh() {
       run();
     }`
-    
+
   else if state == 2
 
     readMovie()
