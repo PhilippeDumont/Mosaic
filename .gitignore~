@@ -3,3 +3,5 @@ tmp/
 package.json~
 .DS_Store
 resources/
+bower_components/
+

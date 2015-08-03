@@ -1,36 +1,6 @@
 fs = require('fs')
 sizeOf = require('image-size')
 
-###
-View display an Element at the specified x and y position.
-###
-class View
-  getHtml : (@element, @x, @y) ->
-
-    #<image style="position:absolute; top:0px; left:0px;" src="images/test.jpg">
-    html = ''
-
-    if @element.type == 'image'
-      _getHtmlOfImage
-
-    else if @element.type == 'video'
-      html += '<video id="video" autoplay '
-      html += 'src="'
-      html += @element.link
-      html += '">'
-      html += '</video>'
-
-
-  _getHtmlOfImage : (@element, @x, @y) ->
-    html = '<img src="'
-    html += @element.link
-    html += '" style="position:absolute; top:'
-    html += @x * @element.height
-    html += 'px; left:'
-    html += @y * @element.width
-    html += 'px;"'
-    html += '/>'
-    return html
 
 class Weather
   constructor : (@location = 'Luxembourg') ->
@@ -84,7 +54,7 @@ class Library
 
 
 library = new Library('./images/', './video/')
-view = new View()
+view = new GenerateHtml()
 
 
 display = (elements) ->

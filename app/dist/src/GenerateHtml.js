@@ -5,6 +5,16 @@
   GenerateHtml = (function() {
     function GenerateHtml() {}
 
+    GenerateHtml.prototype.getHtml = function(element, x, y) {
+      var html;
+      html = '';
+      if (element.type === 'image') {
+        return this._getHtmlOfImage(element, x, y);
+      } else if (element.type === 'video') {
+        return this._getHtmlOfVideo(element, x, y);
+      }
+    };
+
     GenerateHtml.prototype._getHtmlOfImage = function(element, x, y) {
       var html;
       html = '<img src="';
@@ -23,16 +33,6 @@
       html += element.link;
       html += '"></video>';
       return html;
-    };
-
-    GenerateHtml.prototype.getHtml = function(element, x, y) {
-      var html;
-      html = '';
-      if (element.type === 'image') {
-        return this._getHtmlOfImage(element, x, y);
-      } else if (element.type === 'video') {
-        return this._getHtmlOfVideo(element, x, y);
-      }
     };
 
     return GenerateHtml;
