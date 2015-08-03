@@ -35,7 +35,7 @@ class Library
 
     imageFiles = fs.readdirSync(@imageDirectory)
     for file in imageFiles
-      link = './images/' + file
+      link = '../images/' + file
       dimensions = sizeOf(link)
       if(dimensions.height > 1080)
         image = new Element('image', link, dimensions.width, dimensions.height)

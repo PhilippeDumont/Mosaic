@@ -51,7 +51,7 @@
       imageFiles = fs.readdirSync(this.imageDirectory);
       for (k = 0, len = imageFiles.length; k < len; k++) {
         file = imageFiles[k];
-        link = './images/' + file;
+        link = '../images/' + file;
         dimensions = sizeOf(link);
         if (dimensions.height > 1080) {
           image = new Element('image', link, dimensions.width, dimensions.height);
