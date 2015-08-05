@@ -1,4 +1,4 @@
-describe "Mosaic", ->
+describe "GenerateHtml", ->
 
   element = undefined
   generateHtml = undefined

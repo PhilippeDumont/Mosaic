@@ -1,0 +1,3 @@
+./resources/node-webkit/Linux64/nw app/
+ coffee --watch --compile --output app/dist/spec/ app/spec/
+ coffee --watch --compile --output app/dist/src/ app/src/

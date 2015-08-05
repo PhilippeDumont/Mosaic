@@ -18,42 +18,8 @@ class Weather
     )
 
 
-###
-Library check in the file system to create all the Elements and put this element
-in arrays.
-###
-class Library
-  constructor : (@imageDirectory, @movieDirectory) ->
-    @images = []
-    @movies = []
-    @bigImages = []
-    @listElements()
 
-  listElements : () ->
-    # Reset
-    @images = []
-
-    imageFiles = fs.readdirSync(@imageDirectory)
-    for file in imageFiles
-      link = '../images/' + file
-      dimensions = sizeOf(link)
-      if(dimensions.height > 1080)
-        image = new Element('image', link, dimensions.width, dimensions.height)
-        @bigImages.push(image)
-      else
-        image = new Element('image', link, dimensions.width, dimensions.height)
-        @images.push(image)
-
-    @movies = []
-    movieFiles = fs.readdirSync(@movieDirectory)
-    for file in movieFiles
-      link = './video/' + file
-      movie = new Element('video', link, 0, 0)
-      @movies.push(movie)
-
-
-
-library = new Library('./images/', './video/')
+library = new Library('./images', './video')
 view = new GenerateHtml()
 
 
@@ -83,16 +49,16 @@ currentMovie = 0
 
 readSmalImage = () ->
 
-  if library.images.length > 0
+  if library.images1.length > 0
 
     tab = []
     j = 0
     while j < 9
 
-      if(currentPosition >= library.images.length)
+      if(currentPosition >= library.images1.length)
         currentPosition = 0
 
-      tab.push(library.images[currentPosition])
+      tab.push(library.images1[currentPosition])
       currentPosition++
       j++
 
